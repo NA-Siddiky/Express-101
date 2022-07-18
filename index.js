@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
     )
 })
 
-app.get('/about', (req, res) => {
+app.get('/about', localMiddleware, (req, res) => {
     fs.readFile('./pages/about .html', (err, data) => {
         if (err) {
             console.log("Error", err);
@@ -68,5 +68,17 @@ app.listen(PORT, () => {
 function globalMiddleware(req, res, next) {
     console.log(`${req.method} - ${req.url}`);
     console.log("global middleware");
+
+    if (req.query.bad) {
+        return res.status(400).send('Bad Request');
+    }
+
+    next();
+}
+
+function localMiddleware(req, res, next) {
+    console.log(`${req.method} - ${req.url}`);
+    console.log("local middleware");
+
     next();
 }
