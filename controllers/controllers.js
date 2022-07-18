@@ -1,7 +1,6 @@
-const router = require('express').Router();
 const fs = require('fs');
 
-router.get('/', (req, res) => {
+exports.homeController = (req, res) => {
     console.log(req.url)
     fs.readFile('./pages/index.html', (err, data) => {
         if (err) {
@@ -14,9 +13,9 @@ router.get('/', (req, res) => {
         }
     }
     )
-})
+}
 
-router.get('/about', (req, res) => {
+exports.aboutController = (req, res) => {
     fs.readFile('./pages/about .html', (err, data) => {
         if (err) {
             console.log("Error", err);
@@ -28,9 +27,9 @@ router.get('/about', (req, res) => {
         }
     }
     )
-})
+}
 
-router.get('/help', (req, res) => {
+exports.helpController = (req, res) => {
     // res.send(
     //     `<h1>I am help route</h1>`
     // )
@@ -45,7 +44,4 @@ router.get('/help', (req, res) => {
         }
     }
     )
-})
-
-
-module.exports = router;
+}

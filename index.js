@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const app = express();
-const router = require('./routes')
+const router = require('./routes/routes')
 
 //middleware(global - work on every router)
 app.use(express.json());
