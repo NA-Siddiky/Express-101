@@ -14,6 +14,11 @@ exports.homeController = (req, res) => {
     }
     )
 }
+exports.errorController = (req, res) => {
+    const error = new Error('Bad Request');
+    error.status = 400;
+    throw error("Bad Request");
+}
 
 exports.aboutController = (req, res) => {
     fs.readFile('./pages/about .html', (err, data) => {
