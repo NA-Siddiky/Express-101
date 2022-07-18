@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
+app.use(globalMiddleware);
 
 app.get('/', (req, res) => {
     console.log(req.url)
@@ -61,3 +62,11 @@ const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Server is running at ${PORT}`);
 });
+
+
+//creating customs middleware
+function globalMiddleware(req, res, next) {
+    console.log(`${req.method} - ${req.url}`);
+    console.log("global middleware");
+    next();
+}
